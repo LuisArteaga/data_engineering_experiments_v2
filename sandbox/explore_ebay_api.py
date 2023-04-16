@@ -6,8 +6,8 @@ import requests
 
 
 # Get the API key from the environment variables
-API_KEY = os.environ.get('API_KEY')
-APP_ID = os.environ.get('APP_ID')
+APP_ID = os.environ.get('EBAY_DEVELOPER_APP_ID')
+OAUTH_TOKEN = os.environ.get('EBAY_DEVELOPER_OAUTH_TOKEN')
 
 # Test Ebay Browse API
 URL = 'https://api.ebay.com/buy/browse/v1/item_summary/search'
@@ -21,12 +21,11 @@ params = {
 headers = {
     'X-EBAY-C-MARKETPLACE-ID': 'EBAY_DE',
     'X-EBAY-C-APP-ID': APP_ID,
-    #'X-EBAY-API-IAF-TOKEN' : API_KEY,
-    'Authorization': 'Bearer ' + API_KEY, 
+    'Authorization': 'Bearer ' + OAUTH_TOKEN, 
     'Content-Type': 'application/json'
     }
 
-response = requests.get(URL, params=params, headers=headers)
+response = requests.get(URL, params=params, headers=headers, timeout=200)
 print(response.status_code)
 
 print(response.text)
