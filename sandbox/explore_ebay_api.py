@@ -11,9 +11,10 @@ OAUTH_TOKEN = os.environ.get('EBAY_DEVELOPER_OAUTH_TOKEN')
 
 # Test Ebay Browse API
 URL = 'https://api.ebay.com/buy/browse/v1/item_summary/search'
+QUERY = 'Art Of Problem Solving'
 
 params = {
-    'q': 'math books',
+    'q': QUERY,
     'limit': 10,
     'offset': 0
     }
@@ -29,8 +30,7 @@ response = requests.get(URL, params=params, headers=headers, timeout=200)
 print(response.status_code)
 
 print(response.text)
-print(response.json())
-print(response.headers)
+
 
 
 # Explore the API with math books as search term
