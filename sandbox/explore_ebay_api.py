@@ -3,7 +3,7 @@
 # Connect to ebay and verify the credentials
 import os
 import requests
-
+import json
 
 # Get the API key from the environment variables
 APP_ID = os.environ.get('EBAY_DEVELOPER_APP_ID')
@@ -27,9 +27,13 @@ headers = {
     }
 
 response = requests.get(URL, params=params, headers=headers, timeout=200)
-print(response.status_code)
 
-print(response.text)
+if response.status_code == 200:
+    print("Code 200")
+    # save file as json in azure blob storage
+    # azure blob storage einrichten
+
+    # response.json()['itemSummaries'][2].keys()
 
 
 
